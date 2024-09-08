@@ -12,21 +12,23 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import environ
 from pathlib import Path
-
-# Initialise environment variables
-env = environ.Env()
-environ.Env.read_env() # Read .env file
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env')) # Read .env file
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_&r2&@p-%e=rt)9ujq2e8&ubxg5tolfw12k$+dbc^k3y*c&t@6'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
@@ -84,7 +86,7 @@ WSGI_APPLICATION = 'greener_gardens.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(default='sqlite:///db.sqlite3'), # To be replaced with the DATABASE_URL from .env file
+    'default': env.db(), # To be replaced with the DATABASE_URL from .env file
 }
 
 
