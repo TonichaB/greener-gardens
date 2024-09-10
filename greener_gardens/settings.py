@@ -33,7 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['https://git.heroku.com/greener-gardens.git', 'localhost']
+ALLOWED_HOSTS = ['greener-gardens-9215b7f1ea61.herokuapp.com', 'localhost']
 
 
 # Application definition
